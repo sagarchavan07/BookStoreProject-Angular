@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<div class="home-container">
+    <div>
+        <mat-grid-tile-header class="heading">
+            <div class="book-text">
+                <span>Books</span>
+                <span class="books-count-text">(128 items)</span>
+            </div>
+            <div class="sort">
+                <div class="sort-text">Sort By</div>
+                <div>
+                    <mat-form-field>
+                        <mat-select>
+                            <mat-option value="relevance">relevance</mat-option>
+                            <mat-option value="ratings">ratings</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-grid-tile-header>
+        <mat-grid-list class="books" cols="4" rowHeight="3:4">
+            <mat-grid-tile *ngFor="let book of books">
+                <div class="grid-book">
+                    <img src={{book.bookImg}} alt="">
+                    <div class="text-div"> 
+                        <div class="text-content-div">                       
+                            <div class="book-name">{{book.bookName}}</div>
+                            <div class="auther-name">{{book.authorName}}</div>                            
+                            <div class="price">Rs {{book.price}}</div>
+                            <div class="buttons">
+                                <button class="add-to-bag-button" mat-stroked-button>ADD TO BAG</button>
+                                <button class="wishlist-button" mat-stroked-button>WISHLIST</button>
+                            </div> 
+                            <div class="buttons">
+                                <!-- <button class="added-to-bag-button" mat-stroked-button>Added to bag</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+
+<app-footer></app-footer>

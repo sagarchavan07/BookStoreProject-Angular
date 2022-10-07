@@ -1,0 +1,144 @@
+
+@mixin flex($direction) {    
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    align-content: center;
+}
+
+.home-container{
+    margin: auto;
+    width: 80%;
+}
+
+.heading {
+    @include flex(row);
+    justify-content: space-between;
+    margin: 1rem auto 1rem;
+
+    .book-text{
+        text-align: left;
+        font: normal normal normal 25px Lato;
+        letter-spacing: 0px;
+        color: #0A0102;
+        opacity: 1;
+        .books-count-text{
+            text-align: left;
+            font: normal normal normal 15px Lato;
+            letter-spacing: 0px;
+            color: #9D9D9D;
+            opacity: 1;
+            margin: 1rem;
+        }
+    }
+
+    .sort{
+        @include flex(row); 
+        justify-content: space-between;
+        border:1px solid black;
+        height: 2rem;
+        margin-right: 0px;
+
+        .sort-text{
+            margin: auto 1rem auto;
+        }
+    }
+}
+
+.grid-book {
+    @include flex(column);
+    justify-content: space-between;
+    text-align: left;
+    width: 235px;
+    height: 315px; 
+    
+    border: 1px solid #E2E2E2;
+    border-radius: 3px;
+    opacity: 1;
+
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    img {
+        position: relative;
+        margin-top: 10px;
+        max-width: 105px;
+        max-height: 135px;
+    }
+    .text-div{
+        width: 100%;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        .text-content-div{
+            margin: 20px;
+
+            .book-name {
+                text-align: left;
+                font: normal normal normal 19px Roboto;
+                letter-spacing: 0px;
+                color: #0A0102;
+                opacity: 1;
+            }
+            .auther-name {
+                text-align: left;
+                font: normal normal normal 16px Lato;
+                letter-spacing: 0px;
+                color: #9D9D9D;
+                opacity: 1;
+            }
+            .price {
+                text-align: left;
+                margin: 6px auto 6px;
+                font: normal normal bold 15px Lato;
+                letter-spacing: 0px;
+                color: #0A0102;
+                opacity: 1;
+            }
+        }
+    }
+
+    .buttons{        
+        @include flex(row);
+        justify-content: space-between;
+        button{     
+            height: 2rem;
+            margin: 5px 0px 0px;
+            font-size: 11px;
+        }
+        .add-to-bag-button {
+            border: none;
+            background: #A03037 0% 0% no-repeat padding-box;
+            text-align: center;
+            font: normal normal medium 11px/13px Lato;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            opacity: 1;
+        }
+        .wishlist-button{
+            border: 1px solid #9D9D9D;
+            background: white 0% 0% no-repeat padding-box;
+            border-radius: 2px;
+            opacity: 1;
+
+            text-align: left;
+            font: normal normal medium 11px/13px Lato;
+            letter-spacing: 0px;
+            color: #0A0102;
+            text-transform: uppercase;
+            opacity: 1;
+        }
+        .added-to-bag-button {
+            width: 100%;
+            background: #3371B5 0% 0% no-repeat padding-box;
+            border-radius: 2px;
+            opacity: 1;
+            text-align: center;
+            font: normal normal medium 11px/13px Lato;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            opacity: 1;
+        }
+    }
+}
+
