@@ -1,6 +1,6 @@
 <mat-card class="header">
     <div class="header-content">
-        <div class="logo-content">
+        <div class="logo-content" (click)="openHome()">
             <div><img src="../../../assets/images/home/education.svg" alt="logo"></div>
             <div class="logo-text">BookStore</div>
         </div>
@@ -16,15 +16,15 @@
             <input type="search" placeholder="Search..."> -->
         </div>
         <div class="tabs">
-            <div class="profile-tab">
-                <div>
+            <div class="profile-tab" (click)="openProfile()">
+                  <div>
                     <img class="profile-logo" src="../../../assets/images/home/profile.png" alt="">
                 </div>
                 <div>Profile</div>
             </div>
-            <div class="cart-tab">
-                <div>
-                    <img src="../../../assets/images/home/supermarket.svg" alt="cart-tab">
+            <div class="cart-tab" (click)="openCart()">
+                <div matBadge="4" matBadgeSize="small" matBadgeColor="accent" [matBadgeHidden]="cartItensCount == 0">
+                    <img  src="../../../assets/images/home/supermarket.svg" alt="cart-tab">
                 </div>
                 <span>Cart</span>
             </div>

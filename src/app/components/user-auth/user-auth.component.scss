@@ -1,22 +1,183 @@
-
-.auth-contailer {
-    // height: 100vh;
-    margin: 0px;
-    background: #000000 0% 0% no-repeat padding-box;
-    opacity: 0.31;
+@mixin flex($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    align-content: center;
 }
 
-.back-div {
+.auth-contailer {
+    height: 80vh;
+    margin: 0px;
+    // background: #000000 0% 0% no-repeat padding-box;
+    background-color: rgba(0, 0, 0, 0.31);
+    // opacity: 0.31;
+    padding-top: 20vh;
+}
+
+.main-div {
+    @include flex(row);
+    justify-content: space-between;
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 21px;
     margin: auto;
-    width: 625px;
+    width: 701px;
     height: 391px;
-    padding: 20vh;
-    div {
+
+    .input-div {
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
+        text-align: left;
+        font: normal normal normal 13px Roboto;
+        letter-spacing: 0px;
+        color: #0A0102;
+        text-transform: capitalize;
+        opacity: 1;
+
         img {
             width: 245px;
             height: 245px;
-        }    
+        }
     }
+
+    .left-div {
+        margin-left: 30px;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        img {
+            width: 245px;
+            height: 245px;
+            border-radius: 122px
+        }
+
+        .online-book-text {
+            text-align: center;
+            margin-top: 2rem;
+            font-weight: bold;
+            font: normal normal medium 18px/24px Roboto;
+            letter-spacing: 0px;
+            color: #0A0102;
+            text-transform: uppercase;
+            opacity: 1;
+        }
+    }
+
+    .right-div {
+        width: 389px;
+        height: 425px;
+        margin-right: 0px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 5px 15px #00000029;
+        border: 1px solid #E4E4E4;
+        border-radius: 6px;
+        opacity: 1;
+
+        // div {
+        //     // margin: 2rem;
+        //     .login-signup-options {
+        //         @include flex(row);
+        //         margin: 0px;
+        //     }
+        // }
+    }
+}
+
+.login-signup-tabs {
+    width: 100%;
+    // margin: 1rem 2rem;
+    align-items: center;
+}
+
+// .input {
+//     width: 100%;
+//     min-height: 2rem;
+//     margin: 0px;
+// }
+
+.mat-tab-group {
+    margin: 1rem 2rem;
+}
+
+.login-div {
+    @include flex(column);
+    align-items: normal;
+    width: 85%;
+
+    .input-div {
+        width: 100%;
+
+        input {
+            height: 2rem;
+        }
+    }
+}
+
+.login-div>div {
+    width: 100%;
+    margin: 16px auto auto auto;
+}
+
+.or-text {
+    text-align: center;
+
+    button {
+        height: 37px;
+        border: none;
+        background-color: transparent;
+        font: normal normal bold 16px Meiryo UI;
+        letter-spacing: 0px;
+        color: #343434;
+        text-transform: uppercase;
+        opacity: 1;
+    }
+}
+
+.or-options {
+    @include flex(row);
+    width: 100%;
+    justify-content: space-between;
+
+    .facebook-btn {
+        width: 126px;
+        height: 37px;
+        background: #4266B2 0% 0% no-repeat padding-box;
+        border-radius: 3px;
+        opacity: 1;
+        text-align: center;
+        font: normal normal normal 12px/16px Roboto;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        opacity: 1;
+    }
+
+    .google-btn {
+        width: 119px;
+        height: 37px;
+        background: #F5F5F5 0% 0% no-repeat padding-box;
+        border: 1px solid #E4E4E4;
+        border-radius: 3px;
+        opacity: 1;
+        text-align: center;
+        font: normal normal normal 12px/16px Roboto;
+        letter-spacing: 0px;
+        color: #0A0102;
+        opacity: 1;
+    }
+}
+
+.login-btn {
+    width: 100%;
+    height: 37px;
+    background: #A03037 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    opacity: 1;
+
+    font: normal normal normal 15px Roboto;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
 }

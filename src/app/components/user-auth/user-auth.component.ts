@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-auth.component.scss']
 })
 export class UserAuthComponent implements OnInit {
+  existingUser: boolean = true;
 
   constructor() { }
 
