@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,16 +10,58 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  expandCustomerDeratils: boolean =false; 
+  expandCustomerDeratils: boolean = false;
   expandOrderSummery: boolean = false;
+  token: string | null = "";
+  cartbookIdList: any = [];
+  cartbookQuantityList: any = [];
+  cartbooks: any = [];
+  cartBookCount: number = 0;
 
-  constructor( private router: Router) { }
+  constructor(private router: Router, private cartSrevice: CartService, private bookService: BookService) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
+    this.getUserCart();
   }
 
-  checkoutOrder(){
+  checkoutOrder() {
     this.router.navigate(["order-success"])
+  }
+
+  decreaseQuantity(bookId: number) {
+    let index = this.cartbookIdList.indexOf(bookId);
+    this.cartbookQuantityList[index] = this.cartbookQuantityList[index] - 1;
+    console.log(this.cartbookQuantityList);
+  }
+
+  increaseQuantity(bookId: number) {
+    let index = this.cartbookIdList.indexOf(bookId);
+    this.cartbookQuantityList[index] = Number.parseInt(this.cartbookQuantityList[index]) + 1;
+    console.log(this.cartbookQuantityList);
+  }
+
+  getCartBooks() {
+    for (let i = 0; i < this.cartbookIdList.length; i++) {
+      this.bookService.getBookById(this.cartbookIdList[i], localStorage.getItem("token")).subscribe((responce: any) => {
+        console.log(responce);
+        this.cartbooks.push(responce.data);
+      });
+    }
+  }
+
+  getUserCart() {
+    if (localStorage.getItem("token") != null) {
+      this.token = localStorage.getItem("token");
+      this.cartSrevice.getUsercart(this.token).subscribe((responce: any) => {
+        console.log(responce);
+        this.cartbookIdList = responce.data.bookIdList;
+        this.cartbookQuantityList = responce.data.quantities;
+        this.cartBookCount = this.cartbookIdList.length;
+        this.getCartBooks();
+      })
+    } else {
+      this.router.navigate(["user-auth"]);
+    }
   }
 
 }

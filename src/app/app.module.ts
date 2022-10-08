@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatBadgeModule,
     MatFormFieldModule,
     MatRadioModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
 
   ],
   providers: [],
