@@ -1,23 +1,21 @@
-<app-header></app-header>
+<app-header [cartCount]="cartBookCount" class="header"></app-header>
 
 <div class="cart-container">
     <mat-card class="my-cart-container">
         <mat-card-title class="my-cart-title">My cart (2)</mat-card-title>
         <mat-card-content>
-            <div class="cart-book">
+            <div class="cart-book" *ngFor="let book of cartbooks ;let i = index">
                 <div class="book-img-div">
-                    <img src="../../../assets/images/home/Image 11.png" alt="book">
+                    <img src={{book.bookImg}} alt="book">
                 </div>
                 <div class="book-content-div">
-                    <div class="book-name">BookName</div>
-                    <div class="auther-name">by auther</div>
-                    <div class="price">Rs 1200 <span>Rs 2000</span></div>
+                    <div class="book-name">{{book.bookName}}</div>
+                    <div class="auther-name">by {{book.authorName}}</div>
+                    <div class="price">Rs {{book.price}} <span>Rs 2000</span></div>
                     <div class="quantity-selector">
-                        <button class="round-button">-</button>
-                        <!-- <mat-icon class="reduce-quantity-icon">remove_circle_outline</mat-icon> -->
-                        <input class="quantity-input" value="1">
-                        <!-- <mat-icon class="add-quantity-icon">add_circle_outline</mat-icon> -->
-                        <button class="round-button">+</button>
+                        <button class="round-button" (click)="decreaseQuantity(book.bookId)">-</button>
+                        <input class="quantity-input" [value]="cartbookQuantityList[i]" [(ngModel)]='cartbookQuantityList[i]'>
+                        <button class="round-button" (click)="increaseQuantity(book.bookId)">+</button>
                         <button class="remove-book-btn">Remove</button>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [cartCount]="cartBookCount" class="header"></app-header>
 
 <div class="home-container">
     <div>
@@ -8,14 +8,13 @@
                 <span class="books-count-text">(128 items)</span>
             </div>
             <div class="sort">
-                <div class="sort-text">Sort By</div>
                 <div>
-                    <mat-form-field>
-                        <mat-select>
-                            <mat-option value="relevance">relevance</mat-option>
-                            <mat-option value="ratings">ratings</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <select class="dropdown-sort" name="sort" id="">
+                        <option value="relevance">Sort by relevance</option>
+                        <option value="LowToHigh">Price: Low to High</option>
+                        <option value="HigjToLow">Price: High to Low</option>
+                        <option value="NewestArrivals">Newest Arrivals</option>
+                    </select>
                 </div>
             </div>
         </mat-grid-tile-header>
@@ -28,12 +27,12 @@
                             <div class="book-name">{{book.bookName}}</div>
                             <div class="auther-name">{{book.authorName}}</div>                            
                             <div class="price">Rs {{book.price}}</div>
-                            <div class="buttons">
-                                <button class="add-to-bag-button" mat-stroked-button>ADD TO BAG</button>
+                            <div class="buttons" *ngIf="cartBookIdList.includes(book.bookId) == false">
+                                <button class="add-to-bag-button" mat-stroked-button (click)="addBookToCart(book.bookId)">ADD TO BAG</button>
                                 <button class="wishlist-button" mat-stroked-button>WISHLIST</button>
                             </div> 
-                            <div class="buttons">
-                                <!-- <button class="added-to-bag-button" mat-stroked-button>Added to bag</button> -->
+                            <div class="buttons" *ngIf="cartBookIdList.includes(book.bookId)">
+                                <button class="added-to-bag-button" mat-stroked-button>Added to bag</button>
                             </div>
                         </div>
                     </div>

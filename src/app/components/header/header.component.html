@@ -23,7 +23,7 @@
                 <div>Profile</div>
             </div>
             <div class="cart-tab" (click)="openCart()">
-                <div matBadge="4" matBadgeSize="small" matBadgeColor="accent" [matBadgeHidden]="cartItensCount == 0">
+                <div matBadge={{cartCount}} matBadgeSize="small" matBadgeColor="primary" [matBadgeHidden]="cartCount == 0">
                     <img  src="../../../assets/images/home/supermarket.svg" alt="cart-tab">
                 </div>
                 <span>Cart</span>

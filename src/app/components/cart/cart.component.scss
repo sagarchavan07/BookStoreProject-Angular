@@ -7,6 +7,13 @@
     align-content: center;
 }
 
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
 .cart-container {
     min-height: 75vh;
     margin: 60px auto auto 177px;
