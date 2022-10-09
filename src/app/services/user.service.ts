@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserService {
-  private url= "http://localhost:8080";
+  private url = "http://localhost:8080";
 
   constructor(private http: HttpClient) { }
-  
-  login(loginData:any){
-    return this.http.post(this.url+"/bookstore/user/login?email="+loginData.email+"&password="+loginData.password,"");
+
+  login(loginData: any) {
+    return this.http.post(this.url + "/bookstore/user/login", loginData );
   }
 
-  signUp(signUpData:any){
-    return this.http.post(this.url+"/bookstore/user/register",signUpData);
+  signUp(signUpData: any) {
+    return this.http.post(this.url + "/bookstore/user/register", signUpData);
   }
 }

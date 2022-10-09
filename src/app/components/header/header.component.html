@@ -16,18 +16,46 @@
             <input type="search" placeholder="Search..."> -->
         </div>
         <div class="tabs">
-            <div class="profile-tab" (click)="openProfile()">
-                  <div>
+            <div class="profile-tab" (click)="openProfileTab()">
+                <div>
                     <img class="profile-logo" src="../../../assets/images/home/profile.png" alt="">
                 </div>
                 <div>Profile</div>
             </div>
             <div class="cart-tab" (click)="openCart()">
-                <div matBadge={{cartCount}} matBadgeSize="small" matBadgeColor="primary" [matBadgeHidden]="cartCount == 0">
-                    <img  src="../../../assets/images/home/supermarket.svg" alt="cart-tab">
+                <div matBadge={{cartCount}} matBadgeSize="small" matBadgeColor="primary"
+                    [matBadgeHidden]="cartCount == 0">
+                    <img src="../../../assets/images/home/supermarket.svg" alt="cart-tab">
                 </div>
                 <span>Cart</span>
             </div>
         </div>
+    </div>
+
+    <div *ngIf="profileTabFlag == true">
+        <div class="profile-pop-up" *ngIf="this.token == null">
+                <label for="" class="wellcome">Welcome</label>
+                <div class="text">To acsess account and manage orders</div>
+                <div>
+                    <button class="button" (click)="openLogin()">LOGIN/SIGNUP</button>
+                </div>
+                <div class="icon-div">
+                    <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
+                </div>
+                <div class="icon-div"><span class="icon">&#9825;</span>Wishlist</div>
+        </div>
+        <div class="profile-pop-up" *ngIf="this.token != null">
+            
+            <label for="" class="wellcome">Hello UserName</label>
+            <div class="icon-div">
+                <mat-icon class="mat-icon">person</mat-icon>Profile
+            </div>
+            <div class="icon-div">
+                <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
+            </div>
+            <div class="icon-div"><span class="icon">&#9825;</span>Wishlist</div>
+            <button class="button" (click)="logout()">LOGOUT</button>
+        </div>
+
     </div>
 </mat-card>

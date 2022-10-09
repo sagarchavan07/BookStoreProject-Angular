@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   cartbooks: any = [];
   cartBookCount: number = 0;
 
-  constructor(private router: Router, private cartSrevice: CartService, private bookService: BookService) { }
+  constructor(private router: Router, private cartSrevice: CartService, private bookService: BookService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getUserCart();
@@ -31,13 +31,15 @@ export class CartComponent implements OnInit {
   decreaseQuantity(bookId: number) {
     let index = this.cartbookIdList.indexOf(bookId);
     this.cartbookQuantityList[index] = this.cartbookQuantityList[index] - 1;
-    console.log(this.cartbookQuantityList);
+    console.log("BookIdList: " + this.cartbookIdList);
+    console.log("qtyList: " + this.cartbookQuantityList);
   }
 
   increaseQuantity(bookId: number) {
     let index = this.cartbookIdList.indexOf(bookId);
     this.cartbookQuantityList[index] = Number.parseInt(this.cartbookQuantityList[index]) + 1;
-    console.log(this.cartbookQuantityList);
+    console.log("BookIdList: " + this.cartbookIdList);
+    console.log("qtyList: " + this.cartbookQuantityList);
   }
 
   getCartBooks() {
@@ -62,6 +64,15 @@ export class CartComponent implements OnInit {
     } else {
       this.router.navigate(["user-auth"]);
     }
+  }
+
+  removeBookFromCart(bookId: number) {
+    this.cartService.removeBook(localStorage.getItem("token"),bookId).subscribe((responce: any)=>{
+      console.log(responce);
+      this.router.navigateByUrl('/').then(() => {
+          this.router.navigate(["cart"]);
+      });
+    })
   }
 
 }

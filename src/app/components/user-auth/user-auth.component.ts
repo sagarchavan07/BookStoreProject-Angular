@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginData } from 'src/app/model/login-data';
 import { BookService } from 'src/app/services/book.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserAuthComponent implements OnInit {
   existingUser: boolean = true;
-  loginData: any = { email: "", password: "" };
+  loginData: LoginData = { email: "", password: "" };
   signUpData: any = { name: "", email: "", password: "", mobileNumber: "" };
   selectedIndex = 0;
 
