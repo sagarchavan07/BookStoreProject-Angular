@@ -8,7 +8,8 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  token:string | null = "";
+  token:string | null = localStorage.getItem("token");
+  profileTabFlag: boolean = false;
   @Input() cartCount: any;
 
   constructor(private router: Router, private cartService: CartService) { }
@@ -16,8 +17,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openProfile() {
+  openLogin() {
     this.router.navigate(["user-auth"]);
+  }
+
+  openProfileTab(){    
+    this.profileTabFlag = (this.profileTabFlag == true) ? false : true
   }
 
   openCart() {
@@ -26,5 +31,12 @@ export class HeaderComponent implements OnInit {
 
   openHome(){
     this.router.navigate(["home"]);    
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+    this.profileTabFlag = false;
+    this.ngOnInit();
+
   }
 }

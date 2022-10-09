@@ -16,7 +16,7 @@
                         <button class="round-button" (click)="decreaseQuantity(book.bookId)">-</button>
                         <input class="quantity-input" [value]="cartbookQuantityList[i]" [(ngModel)]='cartbookQuantityList[i]'>
                         <button class="round-button" (click)="increaseQuantity(book.bookId)">+</button>
-                        <button class="remove-book-btn">Remove</button>
+                        <button class="remove-book-btn" (click)="removeBookFromCart(book.bookId)">Remove</button>
                     </div>
                 </div>
             </div>
@@ -87,16 +87,18 @@
     <mat-card class="order-summery">
         <mat-card-title class="order-summery-title">Order Summery</mat-card-title>
         <mat-card-content *ngIf="this.expandOrderSummery == true">
-            <div class="cart-book">
+
+            <div class="cart-book" *ngFor="let book of cartbooks ;let i = index">
                 <div class="book-img-div">
-                    <img src="../../../assets/images/home/Image 11.png" alt="book">
+                    <img src={{book.bookImg}} alt="book">
                 </div>
                 <div class="book-content-div">
-                    <div class="book-name">BookName</div>
-                    <div class="auther-name">by auther</div>
-                    <div class="price">Rs 1200 </div>
+                    <div class="book-name">{{book.bookName}}</div>
+                    <div class="auther-name">by {{book.authorName}}</div>
+                    <div class="price">Rs {{book.price}}</div>
                 </div>
             </div>
+            
             <div class="place-order-button-div">
                 <button class="checkout-button" mat-stroked-button (click)="checkoutOrder()">Checkout</button>
             </div>
