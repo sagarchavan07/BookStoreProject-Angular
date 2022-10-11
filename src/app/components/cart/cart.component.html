@@ -1,4 +1,4 @@
-<app-header [cartCount]="cartBookCount" class="header"></app-header>
+<app-header [cartCount]="cartbooks.length" class="header"></app-header>
 
 <div class="cart-container">
     <mat-card class="my-cart-container">
@@ -14,72 +14,72 @@
                     <div class="price">Rs {{book.price}} <span>Rs 2000</span></div>
                     <div class="quantity-selector">
                         <button class="round-button" (click)="decreaseQuantity(book.bookId)">-</button>
-                        <input class="quantity-input" [value]="cartbookQuantityList[i]" [(ngModel)]='cartbookQuantityList[i]'>
+                        <input class="quantity-input" [value]="userCart.quantities[i]" [(ngModel)]='userCart.quantities[i]'>
                         <button class="round-button" (click)="increaseQuantity(book.bookId)">+</button>
                         <button class="remove-book-btn" (click)="removeBookFromCart(book.bookId)">Remove</button>
                     </div>
                 </div>
             </div>
             <div class="place-order-button-div" *ngIf="this.expandCustomerDeratils == false">
-                <button class="place-order-button" mat-stroked-button (click)="this.expandCustomerDeratils = true">Place Order</button>
+                <button class="place-order-button" mat-stroked-button (click)="updateCart();" >Place Order</button>
             </div>
         </mat-card-content>
     </mat-card>
     <mat-card class="customer-details">
         <mat-card-title class="customer-details-title">
             <div>Customer Details</div>
-            <div class="edit" *ngIf="this.expandOrderSummery == true">Edit</div>
+            <div class="edit" *ngIf="this.expandOrderSummery == true"  (click)="this.expandOrderSummery = false">Edit</div>
         </mat-card-title>
         <div>
             <div *ngIf="this.expandCustomerDeratils == true">
                 <div class="input-div">
                     <mat-form-field class="input"  appearance="outline">
                         <mat-label>Name</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="user.name">
                     </mat-form-field>
                     <mat-form-field  class="input" appearance="outline">
                         <mat-label>Phone Number</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="user.mobileNumber">
                     </mat-form-field>
                 </div>
                 <div class="input-div">                    
                     <mat-form-field  class="input" appearance="outline">
                         <mat-label>Pin Code</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="user.pinCode">
                     </mat-form-field>
                     <mat-form-field class="input" appearance="outline">
                         <mat-label>Locality</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="user.locality">
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field  class="input-text" appearance="outline">
                         <mat-label>Address</mat-label>
-                        <textarea matInput></textarea>
+                        <textarea matInput [(ngModel)]="user.address"></textarea>
                       </mat-form-field>
                 </div>
                 <div class="input-div">
                     <mat-form-field class="input" appearance="outline">
                         <mat-label>City/Town</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="user.city">
                     </mat-form-field>
                     <mat-form-field  class="input" appearance="outline">
                         <mat-label>LandMark</mat-label>
-                        <input matInput>
+                        <input matInput [(ngModel)]="user.landmark">
                     </mat-form-field>
                 </div>
                 <div class="type">
                     <div class="type-text">Type</div>
                     <div>
-                        <mat-radio-group class="radio-buttons">
+                        <mat-radio-group class="radio-buttons" [(ngModel)]="user.customerType">
                             <mat-radio-button value="home">Home</mat-radio-button>
-                            <mat-radio-button value="work">Work</mat-radio-button>
-                            <mat-radio-button value="other">Other</mat-radio-button>
+                            <mat-radio-button value="work" >Work</mat-radio-button>
+                            <mat-radio-button value="other" >Other</mat-radio-button>
                           </mat-radio-group>
                     </div>
                 </div>
                 <div class="place-order-button-div" *ngIf="this.expandOrderSummery == false">
-                    <button class="continue-button" mat-stroked-button (click)="this.expandOrderSummery = true">Continue</button>
+                    <button class="continue-button" mat-stroked-button (click)="updateUserData()">Continue</button>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
             </div>
             
             <div class="place-order-button-div">
-                <button class="checkout-button" mat-stroked-button (click)="checkoutOrder()">Checkout</button>
+                <button class="checkout-button" mat-stroked-button (click)="placeOrder()">Checkout</button>
             </div>
         </mat-card-content>
     </mat-card>

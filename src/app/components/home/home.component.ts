@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Book } from 'src/app/model/book';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -14,12 +13,13 @@ export class HomeComponent implements OnInit {
   books: any = [];
   cartBookIdList: any = [];
   token: string | null = "";
-  cartBookCount:number = 0;
+  cartBookCount: number = 0;
+  @Input() reloadevent: any;
 
   constructor(private bookService: BookService, private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
-
+    this.token = localStorage.getItem("token");
     this.getAllbooks();
     this.getCartBooks();
   }
@@ -34,10 +34,12 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem("token") != null) {
       this.token = localStorage.getItem("token");
       this.cartService.getUsercart(this.token).subscribe((responce: any) => {
-        // console.log(responce);
         this.cartBookIdList = responce.data.bookIdList;
-        this.cartBookCount = this.cartBookIdList.length;        
+        this.cartBookCount = this.cartBookIdList.length;
       })
+    } else {
+      this.cartBookIdList = [];
+      this.cartBookCount = 0;
     }
   }
 

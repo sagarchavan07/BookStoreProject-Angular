@@ -7,11 +7,18 @@
     align-content: center;
 }
 
+.main-container {
+    min-height: 100vh;
+    @include flex(column);
+}
 .header {
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 2;
+}
+.footer{
+    width: 100%;
 }
 
 .home-container {

@@ -6,14 +6,14 @@
         </div>
         <div class="search-bar">
 
-            <form class="nosubmit">
+            <!-- <form class="nosubmit">
                 <input class="nosubmit" type="search" placeholder="Search...">
-            </form>
+            </form> -->
 
-            <!-- <div class="search-icon">
+            <div class="search-icon">
                 <mat-icon>search</mat-icon>
             </div>
-            <input type="search" placeholder="Search..."> -->
+            <input class="search-input" type="search" placeholder="Search...">
         </div>
         <div class="tabs">
             <div class="profile-tab" (click)="openProfileTab()">
@@ -46,7 +46,7 @@
         </div>
         <div class="profile-pop-up" *ngIf="this.token != null">
             
-            <label for="" class="wellcome">Hello UserName</label>
+            <label for="" class="wellcome">Hello User,</label>
             <div class="icon-div">
                 <mat-icon class="mat-icon">person</mat-icon>Profile
             </div>
