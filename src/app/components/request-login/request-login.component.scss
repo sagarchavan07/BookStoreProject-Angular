@@ -1,0 +1,45 @@
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .main-content {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-content: center;
+        font: normal normal normal 15px/20px Roboto;
+        letter-spacing: 0px;
+        color: #9D9D9D;
+        opacity: 1;
+
+        div {
+            margin: 1rem auto;
+            text-align: center;
+        }
+
+        .login-text {
+            font-weight: bold;
+            font-family: 'Roboto';
+            font-size: 25px;
+            letter-spacing: 0px;
+            color: #0A0102;
+            opacity: 1;
+        }
+        .button {
+            width: 8rem;
+            height: 33px;
+            border: 1px solid #A03037;
+            background-color: transparent;
+            border-radius: 2px;
+            opacity: 1;
+            cursor: pointer;
+    
+            font: normal normal normal 12px/16px Roboto;
+            letter-spacing: 0px;
+            color: #A03037;
+            opacity: 1;
+        }
+    }
+}

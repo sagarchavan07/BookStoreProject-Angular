@@ -24,6 +24,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RequestLoginComponent } from './components/request-login/request-login.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     UserAuthComponent,
     CartComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    RequestLoginComponent,
+    WishListComponent
   ],
   imports: [
     BrowserModule,

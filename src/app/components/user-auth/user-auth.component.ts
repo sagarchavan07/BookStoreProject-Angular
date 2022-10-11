@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData } from 'src/app/model/login-data';
-import { BookService } from 'src/app/services/book.service';
+import { UserData } from 'src/app/model/user-data';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,18 +12,23 @@ import { UserService } from 'src/app/services/user.service';
 export class UserAuthComponent implements OnInit {
   existingUser: boolean = true;
   loginData: LoginData = { email: "", password: "" };
-  signUpData: any = { name: "", email: "", password: "", mobileNumber: "" };
+  signUpData: UserData = {
+    name: "", email: "", password: "", mobileNumber: 0,isAdmin: 'false', address: "", pinCode: 0, locality: "", city: "", landmark: "", customerType: ""
+  };
+
   selectedIndex = 0;
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit(): void {
-    console.log(this.selectedIndex);
-    
+  ngOnInit(): void {    
   }
 
   selectTab(index: number): void {
     this.selectedIndex = index;
+  }
+
+  openHome(){
+    this.router.navigate(["home"]);
   }
 
   signUp() {
