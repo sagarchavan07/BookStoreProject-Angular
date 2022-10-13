@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   token: string | null = "";
   userCart: any = "";
   user: UserData = {
-    name: "", email: "", password: "", mobileNumber: 0, isAdmin: 'false', address: "", pinCode: 0, locality: "", city: "", landmark: "", customerType: ""
+    name: "", email: "", password: "", mobileNumber: null, isAdmin: 'false', address: "", pinCode: null, locality: "", city: "", landmark: "", customerType: ""
   };
   orderData: any = { bookIdList: [], quantityList: [] };
 
@@ -103,8 +103,8 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem("token")) {
       this.userService.getUserData(localStorage.getItem("token")).subscribe((responce: any) => {
         console.log(responce);
-        this.user = responce.data;
-      })      
+        this.user = responce.data
+      })
     }
   }
 

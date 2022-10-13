@@ -2,10 +2,10 @@ export class UserData {
     name: string = "";
     email: string = "";
     password: string = "";
-    mobileNumber: number = 0;
+    mobileNumber: number | null = null;
     isAdmin: string = "";
     address: string = "";
-    pinCode: number = 0;
+    pinCode: number | null = null;
     locality: string = "";
     city: string = "";
     landmark: string = "";

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +10,16 @@ import { CartService } from 'src/app/services/cart.service';
 export class HeaderComponent implements OnInit {
   token: string | null = null;
   profileTabFlag: boolean = false;
+  userName: string = "";
   @Input() cartCount: any;
   @Output() reloadComponent = new EventEmitter<boolean>();;
 
-  constructor(private router: Router, private cartService: CartService) { }
+
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem("token");
+    this.getUserDetails();
   }
 
   openLogin() {
@@ -40,5 +43,14 @@ export class HeaderComponent implements OnInit {
     this.profileTabFlag = false;
     this.reloadComponent.emit(true);
     this.router.navigate(["home"]);
+  }
+
+  getUserDetails() {
+    if (this.token) {
+      this.userService.getUserData(this.token).subscribe((responce: any) => {
+        console.log(responce);
+        this.userName = responce.data.name;
+      })
+    }
   }
 }
