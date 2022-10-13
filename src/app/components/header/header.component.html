@@ -20,7 +20,10 @@
                 <div>
                     <img class="profile-logo" src="../../../assets/images/home/profile.png" alt="">
                 </div>
-                <div>Profile</div>
+                <div>
+                    <div *ngIf="token == null">Profile</div>
+                    <div *ngIf="token != null">{{userName}}</div>
+                </div>
             </div>
             <div class="cart-tab" (click)="openCart()">
                 <div matBadge={{cartCount}} matBadgeSize="small" matBadgeColor="primary"
@@ -34,18 +37,18 @@
 
     <div *ngIf="profileTabFlag == true">
         <div class="profile-pop-up" *ngIf="this.token == null">
-                <label for="" class="wellcome">Welcome</label>
-                <div class="text">To acsess account and manage orders</div>
-                <div>
-                    <button class="button" (click)="openLogin()">LOGIN/SIGNUP</button>
-                </div>
-                <div class="icon-div">
-                    <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
-                </div>
-                <div class="icon-div"><span class="icon">&#9825;</span>Wishlist</div>
+            <label for="" class="wellcome">Welcome</label>
+            <div class="text">To acsess account and manage orders</div>
+            <div>
+                <button class="button" (click)="openLogin()">LOGIN/SIGNUP</button>
+            </div>
+            <div class="icon-div">
+                <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
+            </div>
+            <div class="icon-div"><span class="icon">&#9825;</span>Wishlist</div>
         </div>
         <div class="profile-pop-up" *ngIf="this.token != null">
-            
+
             <label for="" class="wellcome">Hello User,</label>
             <div class="icon-div">
                 <mat-icon class="mat-icon">person</mat-icon>Profile
