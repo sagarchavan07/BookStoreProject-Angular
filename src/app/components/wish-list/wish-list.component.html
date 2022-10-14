@@ -1,1 +1,25 @@
-<p>wish-list works!</p>
+<div class="main-container">
+    <app-header></app-header>
+    <div class="wishlist-container">
+        <mat-card class="my-cart-container">
+            <mat-card-title class="my-cart-title">Wishlist</mat-card-title>
+            <mat-card-content>
+                <div class="cart-book" *ngFor="let book of wishlistBooks ;let i = index">
+                    <div class="book-img-div">
+                        <img src={{book.bookImg}} alt="book">
+                    </div>
+                    <div class="book-content-div">
+                        <div class="book-name">{{book.bookName}}</div>
+                        <div class="auther-name">by {{book.authorName}}</div>
+                        <div class="price">Rs {{book.price}} <span>Rs 2000</span></div>
+                        <div class="buttons">
+                            <button class="add-to-bag-button" mat-stroked-button (click)="addBookToCart(book.bookId)">ADD TO BAG</button>
+                            <button class="remove-button" mat-stroked-button (click)="removeBookFromWishlist(book.bookId)">REMOVE</button>
+                        </div> 
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <app-footer></app-footer>
+</div>

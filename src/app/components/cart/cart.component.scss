@@ -7,6 +7,12 @@
     align-content: center;
 }
 
+.main-container {
+    min-height: 100vh;
+    @include flex(column);
+    align-items: stretch;
+}
+
 .header {
     position: sticky;
     top: 0;
@@ -219,5 +225,22 @@
         @include flex(row);
         width: 40%;
         margin: auto auto auto 0;
+    }
+}
+
+.spinner-background {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: white, $alpha: 0.2);
+    display: flex;
+
+    overflow: hidden;
+
+    .spinner {
+        margin: auto;
     }
 }

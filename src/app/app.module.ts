@@ -26,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RequestLoginComponent } from './components/request-login/request-login.component';
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
     MatRadioModule,
     HttpClientModule,
     FormsModule,
-
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

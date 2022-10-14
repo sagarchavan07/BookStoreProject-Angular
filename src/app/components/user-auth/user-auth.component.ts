@@ -33,7 +33,6 @@ export class UserAuthComponent implements OnInit {
 
   signUp() {
     this.userService.signUp(this.signUpData).subscribe((responce) => {
-      console.log(responce);
       this.router.navigate(["user-auth"]);
       this.selectTab(0);
     })
@@ -41,7 +40,6 @@ export class UserAuthComponent implements OnInit {
 
   login() {
     this.userService.login(this.loginData).subscribe((responce: any) => {
-      console.log( responce );
       localStorage.setItem("token",responce.data)
       this.router.navigate(["home"]);
     })

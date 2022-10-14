@@ -1,5 +1,11 @@
-.main-content {
+.main-page{
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.main-content {
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
