@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserData } from 'src/app/model/user-data';
 import { BookService } from 'src/app/services/book.service';
@@ -21,6 +22,7 @@ export class CartComponent implements OnInit {
     name: "", email: "", password: "", mobileNumber: null, isAdmin: 'false', address: "", pinCode: null, locality: "", city: "", landmark: "", customerType: ""
   };
   orderData: any = { bookIdList: [], quantityList: [] };
+  showSpinner: boolean = false;
 
   cartbooks: Array<any> = [];
 
@@ -30,7 +32,8 @@ export class CartComponent implements OnInit {
     private bookService: BookService,
     private cartService: CartService,
     private userService: UserService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -39,32 +42,31 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder() {
+    this.showSpinner = true;
     this.orderData.bookIdList = this.userCart.bookIdList;
     this.orderData.quantityList = this.userCart.quantities;
     this.orderService.placeOrder(localStorage.getItem("token"), this.orderData).subscribe((responce: any) => {
-      console.log(responce);
-      this.router.navigate(["order-success"])
+      this.router.navigate(["order-success"]);
+      this.showSpinner = false;
+    },(error:any)=>{
+      this.showSpinner = false;
+      console.log(error);
     })
   }
 
   decreaseQuantity(bookId: number) {
     let index = this.userCart.bookIdList.indexOf(bookId);
     this.userCart.quantities[index] = this.userCart.quantities[index] - 1;
-    console.log("BookIdList: " + this.userCart.bookIdList);
-    console.log("quantityList: " + this.userCart.quantities);
   }
 
   increaseQuantity(bookId: number) {
     let index = this.userCart.bookIdList.indexOf(bookId);
     this.userCart.quantities[index] = Number.parseInt(this.userCart.quantities[index]) + 1;
-    console.log("BookIdList: " + this.userCart.bookIdList);
-    console.log("quantityList: " + this.userCart.quantities);
   }
 
   getCartBooks() {
     for (let i = 0; i < this.userCart.bookIdList.length; i++) {
       this.bookService.getBookById(this.userCart.bookIdList[i], localStorage.getItem("token")).subscribe((responce: any) => {
-        console.log(responce);
         this.cartbooks.push(responce.data);
       });
     }
@@ -74,7 +76,6 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem("token") != null) {
       this.token = localStorage.getItem("token");
       this.cartSrevice.getUsercart(this.token).subscribe((responce: any) => {
-        console.log(responce);
         this.userCart = responce.data;
         this.getCartBooks();
       })
@@ -85,7 +86,6 @@ export class CartComponent implements OnInit {
 
   removeBookFromCart(bookId: number) {
     this.cartService.removeBook(localStorage.getItem("token"), bookId).subscribe((responce: any) => {
-      console.log(responce);
       this.router.navigateByUrl('/').then(() => {
         this.router.navigate(["cart"]);
       });
@@ -94,15 +94,14 @@ export class CartComponent implements OnInit {
 
   updateCart() {
     this.cartService.updateCart(localStorage.getItem("token"), this.userCart).subscribe((responce: any) => {
-      console.log(responce);
       this.expandCustomerDeratils = true;
+      this._snackBar.open("Updated Cart Details","dismiss")
     })
   }
 
   getUserData() {
     if (localStorage.getItem("token")) {
       this.userService.getUserData(localStorage.getItem("token")).subscribe((responce: any) => {
-        console.log(responce);
         this.user = responce.data
       })
     }
@@ -111,8 +110,8 @@ export class CartComponent implements OnInit {
   updateUserData() {
     this.expandOrderSummery = true
     this.userService.updateUserData(localStorage.getItem("token"), this.user).subscribe((responce: any) => {
-      console.log(responce);
       this.user = responce.data;
+      this._snackBar.open("Updated Customer Details","dismiss")
     })
   }
 

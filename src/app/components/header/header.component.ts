@@ -38,9 +38,14 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(["home"]);
   }
 
+  openWishlist(){
+    this.router.navigate(["wishlist"]);    
+  }
+
   logout() {
     localStorage.removeItem("token");
     this.profileTabFlag = false;
+    this.ngOnInit();
     this.reloadComponent.emit(true);
     this.router.navigate(["home"]);
   }
@@ -48,7 +53,6 @@ export class HeaderComponent implements OnInit {
   getUserDetails() {
     if (this.token) {
       this.userService.getUserData(this.token).subscribe((responce: any) => {
-        console.log(responce);
         this.userName = responce.data.name;
       })
     }

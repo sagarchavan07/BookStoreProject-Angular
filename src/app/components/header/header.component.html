@@ -16,6 +16,38 @@
             <input class="search-input" type="search" placeholder="Search...">
         </div>
         <div class="tabs">
+            <div *ngIf="profileTabFlag == true">
+                <div class="profile-pop-up" *ngIf="this.token == null">
+                    <label for="" class="wellcome">Welcome</label>
+                    <div class="text">To acsess account and manage orders</div>
+                    <div>
+                        <button class="button" (click)="openLogin()">LOGIN/SIGNUP</button>
+                    </div>
+                    <div class="icon-div">
+                        <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
+                    </div>
+                    <div class="icon-div wishlist"  (click)="openWishlist()">
+                        <span class="icon">&#9825;</span>
+                        <span>Wishlist</span>
+                    </div>
+                </div>
+                <div class="profile-pop-up" *ngIf="this.token != null">
+
+                    <label for="" class="wellcome">Hello {{userName}},</label>
+                    <div class="icon-div">
+                        <mat-icon class="mat-icon">person</mat-icon>Profile
+                    </div>
+                    <div class="icon-div">
+                        <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
+                    </div>
+                    <div class="icon-div wishlist" (click)="openWishlist()">
+                        <span class="icon">&#9825;</span>
+                        <span>Wishlist</span>
+                    </div>
+                    <button class="button" (click)="logout()">LOGOUT</button>
+                </div>
+
+            </div>
             <div class="profile-tab" (click)="openProfileTab()">
                 <div>
                     <img class="profile-logo" src="../../../assets/images/home/profile.png" alt="">
@@ -35,30 +67,5 @@
         </div>
     </div>
 
-    <div *ngIf="profileTabFlag == true">
-        <div class="profile-pop-up" *ngIf="this.token == null">
-            <label for="" class="wellcome">Welcome</label>
-            <div class="text">To acsess account and manage orders</div>
-            <div>
-                <button class="button" (click)="openLogin()">LOGIN/SIGNUP</button>
-            </div>
-            <div class="icon-div">
-                <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
-            </div>
-            <div class="icon-div"><span class="icon">&#9825;</span>Wishlist</div>
-        </div>
-        <div class="profile-pop-up" *ngIf="this.token != null">
 
-            <label for="" class="wellcome">Hello User,</label>
-            <div class="icon-div">
-                <mat-icon class="mat-icon">person</mat-icon>Profile
-            </div>
-            <div class="icon-div">
-                <mat-icon class="mat-icon">markunread_mailbox</mat-icon>My Orders
-            </div>
-            <div class="icon-div"><span class="icon">&#9825;</span>Wishlist</div>
-            <button class="button" (click)="logout()">LOGOUT</button>
-        </div>
-
-    </div>
 </mat-card>
