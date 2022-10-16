@@ -27,4 +27,10 @@ export class WishlistService {
       return this.http.delete(this.url + "/delete/" + bookId, { headers: header })
     } else throw Error("token not found");
   }
+  getWishlistBooks(token: string) {
+    if (token != null) {
+      let header = new HttpHeaders().set('Authorization', token);
+      return this.http.get<any>(this.url + "/wishlistBooks", { headers: header })
+    } else throw console.error("invalid token");
+  }
 }

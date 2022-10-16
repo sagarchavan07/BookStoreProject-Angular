@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserData } from 'src/app/model/user-data';
-import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
 import { UserService } from 'src/app/services/user.service';
@@ -29,16 +27,13 @@ export class CartComponent implements OnInit {
   constructor(
     private router: Router,
     private cartSrevice: CartService,
-    private bookService: BookService,
     private cartService: CartService,
     private userService: UserService,
     private orderService: OrderService,
-    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.getUserCart();
-    this.getUserData();
   }
 
   placeOrder() {
@@ -65,10 +60,10 @@ export class CartComponent implements OnInit {
   }
 
   getCartBooks() {
-    for (let i = 0; i < this.userCart.bookIdList.length; i++) {
-      this.bookService.getBookById(this.userCart.bookIdList[i], localStorage.getItem("token")).subscribe((responce: any) => {
-        this.cartbooks.push(responce.data);
-      });
+    if (this.token) {
+      this.cartService.getCartBooks(this.token).subscribe((responce:any)=>{
+        this.cartbooks = responce.data;      
+      })
     }
   }
 
@@ -95,7 +90,6 @@ export class CartComponent implements OnInit {
   updateCart() {
     this.cartService.updateCart(localStorage.getItem("token"), this.userCart).subscribe((responce: any) => {
       this.expandCustomerDeratils = true;
-      this._snackBar.open("Updated Cart Details","dismiss")
     })
   }
 
@@ -111,7 +105,6 @@ export class CartComponent implements OnInit {
     this.expandOrderSummery = true
     this.userService.updateUserData(localStorage.getItem("token"), this.user).subscribe((responce: any) => {
       this.user = responce.data;
-      this._snackBar.open("Updated Customer Details","dismiss")
     })
   }
 

@@ -28,10 +28,16 @@ export class CartService {
     } else throw Error("token not found");
   }
 
-  updateCart(token: string | null, usercart: any){
+  updateCart(token: string | null, usercart: any) {
     if (token != null) {
       let header = new HttpHeaders().set('Authorization', token);
-      return this.http.put(this.url + "/update/",usercart, { headers: header })
+      return this.http.put(this.url + "/update/", usercart, { headers: header })
     } else throw Error("token not found");
+  }
+  getCartBooks(token: string) {
+    if (token != null) {
+      let header = new HttpHeaders().set('Authorization', token);
+      return this.http.get<any>(this.url + "/cartBooks", { headers: header })
+    } else throw console.error("invalid token");
   }
 }

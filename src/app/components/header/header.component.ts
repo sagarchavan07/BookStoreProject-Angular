@@ -8,9 +8,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  token: string | null = null;
+  token: string | null = localStorage.getItem("token");
   profileTabFlag: boolean = false;
-  userName: string = "";
+  userName: string | null  = localStorage.getItem("userName");
   @Input() cartCount: any;
   @Output() reloadComponent = new EventEmitter<boolean>();;
 
@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.token = localStorage.getItem("token");
-    this.getUserDetails();
+    this.token= localStorage.getItem("token");
+    this.userName= localStorage.getItem("userName");
   }
 
   openLogin() {
@@ -44,17 +44,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("userName");
     this.profileTabFlag = false;
     this.ngOnInit();
     this.reloadComponent.emit(true);
     this.router.navigate(["home"]);
-  }
-
-  getUserDetails() {
-    if (this.token) {
-      this.userService.getUserData(this.token).subscribe((responce: any) => {
-        this.userName = responce.data.name;
-      })
-    }
   }
 }

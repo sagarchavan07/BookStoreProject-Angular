@@ -56,17 +56,17 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  addBookToWishlist(bookId: number){
-    this.wishlistService.addBook(this.token,bookId).subscribe((responce: any)=>{
-      this.ngOnInit();     
+  addBookToWishlist(bookId: number) {
+    this.wishlistService.addBook(this.token, bookId).subscribe((responce: any) => {
+      this.ngOnInit();
     })
   }
 
   getUserWishlist() {
     if (this.token) {
-      this.wishlistService.getUserWishlist(this.token).subscribe((response:any)=>{
+      this.wishlistService.getUserWishlist(this.token).subscribe((response: any) => {
         this.wishlistBooks = response.data.bookIdList;
       })
-    } 
+    }
   }
 }
