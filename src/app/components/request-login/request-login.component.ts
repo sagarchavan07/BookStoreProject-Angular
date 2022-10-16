@@ -16,5 +16,4 @@ export class RequestLoginComponent implements OnInit {
   openLogin(){
     this.router.navigate(["user-auth"])
   }
-
 }

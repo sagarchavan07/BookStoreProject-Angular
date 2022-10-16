@@ -11,36 +11,27 @@ import { WishlistService } from 'src/app/services/wishlist.service';
 })
 export class WishListComponent implements OnInit {
   token: string | null = null;
-  wishlist: any = "";
+  // wishlist: any = "";
   wishlistBooks: Array<any> = [];
 
   constructor(private router: Router, private wishlistService: WishlistService, private bookService: BookService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.token = localStorage.getItem("token");
-    this.getWishlist();
+    this.getWishListBooks();
   }
 
-  getWishlist() {
+
+
+  getWishListBooks() {
     if (this.token) {
-      this.wishlistService.getUserWishlist(this.token).subscribe((response:any)=>{
-        this.wishlist = response.data;
-        this.getCartBookDetails();
+      this.wishlistService.getWishlistBooks(this.token).subscribe((response: any) => {
+        this.wishlistBooks = response.data;
       })
-    } else this.router.navigate(["request-login"]);
-  }
-
-  getCartBookDetails(){
-    this.wishlistBooks = [];
-    for (let i = 0; i < this.wishlist.bookIdList.length; i++) {
-      if (this.token) {
-        this.bookService.getBookById(this.wishlist.bookIdList[i],this.token).subscribe((response:any)=>{
-          this.wishlistBooks.push(response.data)
-        })
-      } else this.router.navigate(["request-login"]); 
     }
+
   }
-  addBookToCart(bookId: number){
+  addBookToCart(bookId: number) {
     if (localStorage.getItem("token")) {
       this.token = localStorage.getItem("token");
       this.cartService.addBook(this.token, bookId).subscribe((responce: any) => {
@@ -51,7 +42,7 @@ export class WishListComponent implements OnInit {
       this.router.navigate(["user-auth"]);
     }
   }
-  removeBookFromWishlist(bookId: number){
+  removeBookFromWishlist(bookId: number) {
     if (localStorage.getItem("token")) {
       this.token = localStorage.getItem("token");
       this.wishlistService.removeBook(this.token, bookId).subscribe((responce: any) => {

@@ -19,7 +19,6 @@ export class BookService {
       let header = new HttpHeaders().set('Authorization', token);
       return this.http.get<any>(this.url + "/get/" + bookId, { headers: header });
     } else throw console.error("invalid token");
-    
   }
 
 }

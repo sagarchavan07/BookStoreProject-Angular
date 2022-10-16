@@ -10,9 +10,7 @@
 .auth-contailer {
     height: 80vh;
     margin: 0px;
-    // background: #000000 0% 0% no-repeat padding-box;
-    background-color: rgba(0, 0, 0, 0.31);
-    // opacity: 0.31;
+    background-color: rgba(0, 0, 0, 0.3);
     padding-top: 20vh;
 }
 
@@ -76,28 +74,13 @@
         border: 1px solid #E4E4E4;
         border-radius: 6px;
         opacity: 1;
-
-        // div {
-        //     // margin: 2rem;
-        //     .login-signup-options {
-        //         @include flex(row);
-        //         margin: 0px;
-        //     }
-        // }
     }
 }
 
 .login-signup-tabs {
     width: 100%;
-    // margin: 1rem 2rem;
     align-items: center;
 }
-
-// .input {
-//     width: 100%;
-//     min-height: 2rem;
-//     margin: 0px;
-// }
 
 .mat-tab-group {
     margin: 1rem 2rem;
@@ -110,7 +93,6 @@
 
     .input-div {
         width: 100%;
-
         input {
             height: 2rem;
         }
@@ -124,7 +106,6 @@
 
 .or-text {
     text-align: center;
-
     button {
         height: 37px;
         border: none;
@@ -141,7 +122,6 @@
     @include flex(row);
     width: 100%;
     justify-content: space-between;
-
     .facebook-btn {
         width: 126px;
         height: 37px;
@@ -176,7 +156,6 @@
     background: #A03037 0% 0% no-repeat padding-box;
     border-radius: 3px;
     opacity: 1;
-
     font: normal normal normal 15px Roboto;
     letter-spacing: 0px;
     color: #FFFFFF;
