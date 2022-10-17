@@ -15,8 +15,10 @@ export class HomeComponent implements OnInit {
   cartBookIdList: any = [];
   token: string | null = "";
   cartBookCount: number = 0;
-  @Input() reloadevent: any;
   wishlistBooks: Array<any> = [];
+  searchText: string = "";
+  
+  @Input() reloadevent: any;
 
   constructor(private bookService: BookService, private cartService: CartService, private router: Router, private wishlistService: WishlistService) { }
 
@@ -67,6 +69,19 @@ export class HomeComponent implements OnInit {
       this.wishlistService.getUserWishlist(this.token).subscribe((response: any) => {
         this.wishlistBooks = response.data.bookIdList;
       })
+    }
+  }
+
+  searchBooks(searchText: string){
+    this.searchText = searchText;
+  }
+
+  sortBooks(sortOption:string){
+    console.log(sortOption);
+    if (sortOption == 'LowToHigh') {
+      
+    } else if(sortOption == 'HighToLow') {
+      
     }
   }
 }

@@ -8,7 +8,7 @@
             <div class="search-icon">
                 <mat-icon>search</mat-icon>
             </div>
-            <input class="search-input" type="search" placeholder="Search...">
+            <input class="search-input" type="search" placeholder="Search..." [(ngModel)]="searchText" (input)="inputSearchText()">
         </div>
         <div class="tabs">
             <div *ngIf="profileTabFlag == true">
