@@ -11,8 +11,11 @@ export class HeaderComponent implements OnInit {
   token: string | null = localStorage.getItem("token");
   profileTabFlag: boolean = false;
   userName: string | null  = localStorage.getItem("userName");
+  searchText:string = "";
+
   @Input() cartCount: any;
-  @Output() reloadComponent = new EventEmitter<boolean>();;
+  @Output() reloadComponent = new EventEmitter<boolean>();
+  @Output() searchValue = new EventEmitter<string>();
 
 
   constructor(private router: Router, private userService: UserService) { }
@@ -49,5 +52,9 @@ export class HeaderComponent implements OnInit {
     this.ngOnInit();
     this.reloadComponent.emit(true);
     this.router.navigate(["home"]);
+  }
+
+  inputSearchText(){
+    this.searchValue.emit(this.searchText);
   }
 }

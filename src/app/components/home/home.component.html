@@ -1,5 +1,5 @@
 <div class="main-container">
-    <app-header [cartCount]="cartBookCount" (reloadComponent)="ngOnInit()" class="header"></app-header>
+    <app-header class="header" [cartCount]="cartBookCount" (reloadComponent)="ngOnInit()" (searchValue)="searchBooks($event)"></app-header>
 
 <div class="home-container">
     <div>
@@ -10,18 +10,19 @@
             </div>
             <div class="sort">
                 <div>
-                    <select class="dropdown-sort" name="sort" id="">
+                    <select #sortOption class="dropdown-sort" name="sort" id="" (input) = "sortBooks(sortOption.value)">
                         <option value="relevance">Sort by relevance</option>
                         <option value="LowToHigh">Price: Low to High</option>
-                        <option value="HigjToLow">Price: High to Low</option>
+                        <option value="HighToLow">Price: High to Low</option>
                         <option value="NewestArrivals">Newest Arrivals</option>
                     </select>
                 </div>
             </div>
         </mat-grid-tile-header>
-        <mat-grid-list class="books" cols="4" rowHeight="3:4">
-            <mat-grid-tile *ngFor="let book of books">
-                <div class="grid-book">
+        <mat-grid-list class="books" cols="4" rowHeight="3:4" >
+           <div *ngFor="let book of books">
+            <mat-grid-tile  *ngIf="searchText == '' || book.bookName.toLowerCase().includes(searchText.toLowerCase())">
+                <div class="grid-book" >
                     <img src={{book.bookImg}} alt="">
                     <div class="text-div"> 
                         <div class="text-content-div">                       
@@ -40,6 +41,7 @@
                     </div>
                 </div>
             </mat-grid-tile>
+           </div>
         </mat-grid-list>
     </div>
 </div>
